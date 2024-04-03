@@ -5,7 +5,7 @@ import { trpc } from "../_trpc/client";
 import { Loader2 } from "lucide-react";
 import { TRPCClientError } from "@trpc/client";
 import { AppRouter } from "@/trpc";
-import { useEffect } from "react";
+import { Suspense,useEffect } from "react";
 
 const Page = () =>{
     const router = useRouter();
@@ -41,4 +41,12 @@ const Page = () =>{
     )
 }
 
-export default Page;
+export default function PageWrapper() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <Page />
+        </Suspense>
+    );
+}
+
+// export default Page;
