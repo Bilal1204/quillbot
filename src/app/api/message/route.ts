@@ -13,6 +13,11 @@ export const POST = async (req: NextRequest) =>{
     const body = await req.json()
     const {getUser} = getKindeServerSession()
     const user = await getUser()
+
+    if (!user) {
+        return new Response('Unauthorized', {status: 401});
+    }    
+
     const {id: userId} = user
     if(!userId)
         return new Response('Unauthorized', {status: 401})
