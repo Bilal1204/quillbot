@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   const [currentlyDeletingFile, setCurrentlyDeletingFile] = React.useState<string | null>(null)
 
-  const utils = trpc.useUtils()
+  const utils = trpc.useContext()
 
     const {data: files, isLoading} = trpc.getUserFiles.useQuery()
 

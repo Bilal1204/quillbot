@@ -49,12 +49,10 @@ const UploadDropzone = () => {
 
     return (
         <Dropzone multiple={false} onDrop={async (acceptedFile) => {
-
             setIsUploading(true)
             const progressInterval = startSimulatedProgress()
-
             const res = await startUpload(acceptedFile)
-
+            console.log({res})
             if(!res){
                 return toast({
                     title: "Something went wrong",
@@ -62,10 +60,9 @@ const UploadDropzone = () => {
                     variant: "destructive"
                 })
             }
-
             const fileResponse = res[0]
+            console.log({fileResponse})
             const key = fileResponse?.key
-
             if(!key){
                 return toast({
                     title: "Something went wrong",
@@ -73,11 +70,8 @@ const UploadDropzone = () => {
                     variant: "destructive"
                 }) 
             }
-
-
             clearInterval(progressInterval)
             setUploadProgress(100)
-
             startPolling({key})
         }}>
                 {({getRootProps, getInputProps, acceptedFiles}) => (
