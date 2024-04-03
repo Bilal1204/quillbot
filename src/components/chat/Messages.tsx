@@ -20,7 +20,7 @@ const {data, isLoading, fetchNextPage} = trpc.getFileMessages.useInfiniteQuery({
     limit: INFINITE_QUERY_LIMIT
 },{
   getNextPageParam: (lastPage) =>  lastPage?.nextCursor,
-  keepPreviousData: true,
+  // keepPreviousData: true,
 })
 
 const messages = data?.pages.flatMap((page) => page.messages)
